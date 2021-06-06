@@ -24,7 +24,7 @@ notify_me() {
 check_space() {
     local disk=$1
     local avaspace=$(df -m /mnt/${disk} | grep -v Available | awk '{print $4}')
-    if [ $avaspace -lt 250000 ]; then
+    if [ $avaspace -lt 245000 ]; then
         print_log "ERROR: Disk ${disk} is full."
         [ -f /tmp/plotshell-diskfull-${disk}.tmp ] || (notify_me "ERROR_DISK_${disk}_IS_FULL" && touch /tmp/plotshell-diskfull-${disk}.tmp && print_log "INFO: Send notify success.")
         return 1
